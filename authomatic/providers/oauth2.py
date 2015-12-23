@@ -12,6 +12,7 @@ Providers which implement the |oauth2|_ protocol.
     Behance
     Bitly
     Cosm
+    Dataporten
     DeviantART
     Eventbrite
     Facebook
@@ -38,7 +39,7 @@ from authomatic.exceptions import CancellationError, FailureError, OAuth2Error
 import authomatic.core as core
 
 
-__all__ = ['OAuth2', 'Amazon', 'Behance', 'Bitly', 'Cosm', 'DeviantART',
+__all__ = ['OAuth2', 'Amazon', 'Behance', 'Bitly', 'Cosm', 'Dataporten', 'DeviantART',
            'Eventbrite', 'Facebook', 'Foursquare', 'GitHub', 'Google',
            'LinkedIn', 'PayPal', 'Reddit', 'Viadeo', 'VK', 'WindowsLive',
            'Yammer', 'Yandex']
@@ -615,6 +616,73 @@ class Cosm(OAuth2):
     @staticmethod
     def _x_user_parser(user, data):
         user.id = user.username = data.get('user')
+        return user
+
+
+class Dataporten(OAuth2):
+    """
+    Dataporten |oauth2| provider.
+
+    * Dashboard: https://dashboard.feideconnect.no/
+    * Docs: http://feideconnect.no/docs/gettingstarted/
+    * API reference:
+
+    Supported :class:`.User` properties:
+
+    * id
+    * name
+    * email
+    * picture
+
+    Unsupported :class:`.User` properties:
+
+    * link
+    * username
+    * birth_date
+    * city
+    * country
+    * first_name
+    * gender
+    * last_name
+    * locale
+    * nickname
+    * phone
+    * postal_code
+    * timezone
+
+    """
+
+    user_authorization_url = 'https://auth.feideconnect.no/oauth/authorization'
+    access_token_url = 'https://auth.feideconnect.no/oauth/token'
+    user_info_url = 'https://auth.feideconnect.no/openid/userinfo'
+
+    User_info_scope = ['openid', 'profile', 'email']
+
+    # openid yields sub, connect-userid_sec, name
+    # profile yields picture
+    # email yields email and email_verfied
+
+    supported_user_attributes = core.SupportedUserAttributes(
+        id=True,
+        email=True,
+        name=True,
+        picture=True
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(Dataporten, self).__init__(*args, **kwargs)
+
+    def _x_scope_parser(self, scope):
+        # Dataporten has space-separated scopes
+        return ' '.join(scope)
+
+    @staticmethod
+    def _x_user_parser(user, data):
+        user.id = data.get('sub')
+        user.name = data.get('name')
+        user.email = data.get('email')
+        user.picture = data.get('picture')
+
         return user
 
 
@@ -1818,4 +1886,4 @@ class Yandex(OAuth2):
 # The provider type ID is generated from this list's indexes!
 # Always append new providers at the end so that ids of existing providers don't change!
 PROVIDER_ID_MAP = [OAuth2, Behance, Bitly, Cosm, DeviantART, Facebook, Foursquare, GitHub, Google, LinkedIn,
-          PayPal, Reddit, Viadeo, VK, WindowsLive, Yammer, Yandex, Eventbrite, Amazon]
+                   PayPal, Reddit, Viadeo, VK, WindowsLive, Yammer, Yandex, Eventbrite, Amazon, Dataporten]
