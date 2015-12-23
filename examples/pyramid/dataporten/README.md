@@ -24,3 +24,5 @@ To run it on your local machine:
 - Visit http://localhost:8080 and press the login link.
 - When logged in, the page will show your name, ID and email.
 - If port 8080 is already in use, edit main.py to choose another port.
+
+The example has been tested with python 2.7.10 and python 3.5.1.
