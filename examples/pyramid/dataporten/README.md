@@ -4,10 +4,10 @@ Simple login example for Dataporten using Pyramid and Authomatic
 To run it on your local machine:
 - Download main.py
 - Install pyramid and this fork of Authomatic, most likely to your virtualenv:
-  ```    
+```
     pip install pyramid
     pip install git+https://github.com/jhellan/authomatic.git
-  ```
+```
 - Visit https://dashboard.feideconnect.no and register a new
   application. Name it whatever you like and use
   `http://localhost:8080/login` as 'Redirect URL'.
@@ -18,9 +18,9 @@ To run it on your local machine:
 - Edit CONFIG['dp'] in main.py, setting 'consumer_key' to 'Client ID'
   from the dashboard and 'consumer_secret' to 'Client Secret'
 - Run main.py
-  ```
+```
     python main.py
-  ```
+```
 - Visit http://localhost:8080 and press the login link.
 - When logged in, the page will show your name, ID and email.
 - If port 8080 is already in use, edit main.py to choose another port.
