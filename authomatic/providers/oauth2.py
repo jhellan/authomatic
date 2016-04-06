@@ -623,8 +623,8 @@ class Dataporten(OAuth2):
     """
     Dataporten |oauth2| provider.
 
-    * Dashboard: https://dashboard.feideconnect.no/
-    * Docs: http://feideconnect.no/docs/gettingstarted/
+    * Dashboard: https://dashboard.dataporten.no/
+    * Docs: https://docs.dataporten.no/docs/gettingstarted/
     * API reference:
 
     Supported :class:`.User` properties:
@@ -652,9 +652,9 @@ class Dataporten(OAuth2):
 
     """
 
-    user_authorization_url = 'https://auth.feideconnect.no/oauth/authorization'
-    access_token_url = 'https://auth.feideconnect.no/oauth/token'
-    user_info_url = 'https://auth.feideconnect.no/openid/userinfo'
+    user_authorization_url = 'https://auth.dataporten.no/oauth/authorization'
+    access_token_url = 'https://auth.dataporten.no/oauth/token'
+    user_info_url = 'https://auth.dataporten.no/openid/userinfo'
 
     User_info_scope = ['openid', 'profile', 'email']
 
