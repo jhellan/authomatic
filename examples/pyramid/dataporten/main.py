@@ -18,7 +18,8 @@ CONFIG = {
     }
 }
 
-authomatic = Authomatic(config=CONFIG, secret='dontcare')
+secret = 'ergeresf'  # Used for signing session cookies and salting CSRF tokens
+authomatic = Authomatic(config=CONFIG, secret=secret)
 
 
 def login(request):
