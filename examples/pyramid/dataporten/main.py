@@ -13,8 +13,8 @@ CONFIG = {
            
         'class_': oauth2.Dataporten,
         
-        'consumer_key': 'client-id-from-dashboard.feideconnect.no',
-        'consumer_secret': 'client-secret-from-dashboard.feideconnect.no'
+        'consumer_key': 'client-id-from-dashboard.dataporten.no',
+        'consumer_secret': 'client-secret-from-dashboard.dataporten.no'
     }
 }
 

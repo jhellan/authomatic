@@ -8,7 +8,7 @@ To run it on your local machine:
     pip install pyramid
     pip install git+https://github.com/jhellan/authomatic.git
 ```
-- Visit https://dashboard.feideconnect.no and register a new
+- Visit https://dashboard.dataporten.no and register a new
   application. Name it whatever you like and use
   `http://localhost:8080/login` as 'Redirect URL'.
 - Visit 'Scopes' on the dashboard, and choose 'profile', 'openid' and
